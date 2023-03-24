@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/style.css') }}">
+    <title>Checkerboard</title>
+    <style>
+        h1 {
+        padding: 1rem;
+        color: {{color1}};
+        background-color: {{color2}};
+        }
+        .color1{
+        width: 5rem;
+        height: 5rem;
+        background-color: {{color1}};
+        }
+        .color2{
+            width: 5rem;
+            height: 5rem;
+            background-color: {{color2}};
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CHECKERBOARD</h1>
+    </header>
+    <div id="container">
+        {% if num <= 0 %}
+            <p><strong>ONLY NUMBERS GREATER THAN  0</strong></p>
+        {% endif %}
+        <table>
+            {% for x in range(num//2) %}
+            <tr>
+                {% for i in range(width) %}
+                    {% if i%2 == 0 %}
+                        <td><div class="color2"></div></td>
+                    {% else %}
+                        <td><div class="color1"></div></td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for i in range(width) %}
+                    {% if i%2 == 0 %}
+                        <td><div class="color1"></div></td>
+                    {% else %}
+                        <td><div class="color2"></div></td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            {% if num%2 != 0  %}
+                <tr>
+                    {% for i in range(width) %}
+                        {% if i%2 == 0 %}
+                            <td><div class="color2"></div></td>
+                        {% else %}
+                            <td><div class="color1"></div></td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endif %}
+        </table>
+    </div>
+</body>
+</html>
